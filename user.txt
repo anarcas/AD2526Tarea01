@@ -1,0 +1,2 @@
+Usuario [Identificador= 1234, Contraseña= qwer, Dirección= asdf, Año de nacimiento= 1234]
+Usuario [Identificador= 3456, Contraseña= erty, Dirección= dfgh, Año de nacimiento= 3456]
