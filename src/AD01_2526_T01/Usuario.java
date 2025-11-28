@@ -5,6 +5,7 @@
 package AD01_2526_T01;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -33,6 +34,7 @@ public class Usuario implements Serializable {
 
     // Atributo estático de la clase Usuario donde se almacenarán todos los usurios que se generen o eliminen
     private static List<Usuario> listaUsuarios = new ArrayList<>();
+    private static List<Usuario> listaUsuariosDeserializada = new ArrayList<>();
     private static List<String> listaUsuariosTXT = new ArrayList<>();
 
     /**
@@ -194,6 +196,7 @@ public class Usuario implements Serializable {
                 FileInputStream fileIn = new FileInputStream(nombreArchivo); ObjectInputStream in = new ObjectInputStream(fileIn)) {
 
             listaUsuarios = (List<Usuario>) in.readObject();
+            listaUsuariosDeserializada = (List<Usuario>) in.readObject();
 
         } catch (FileNotFoundException ex) {
             System.err.println("Error: El archivo " + nombreArchivo + "no existe.");
@@ -223,6 +226,53 @@ public class Usuario implements Serializable {
             // Manejo de excepciones de Entrada/Salida
             System.err.println("Error de E/S al escribir en el fichero: " + ex.getMessage());
         }
+    }
+
+    /**
+     * Método para comprobar si el archivo indicado por el usuario existe
+     *
+     * @param nombreArchivo
+     * @return booleano
+     */
+    public static boolean comprobarExistenciaArchivo(String nombreArchivo) {
+
+        // Se declara un objeto archivo de la clase File
+        File archivo;
+
+        // Se instancia el objeto archivo anterior
+        archivo = new File(nombreArchivo);
+
+        // Return
+        return archivo.exists();
+
+    }
+
+    public static boolean compararListas() {
+
+        int contador = 0;
+        boolean listasIguales = true;
+
+        if (listaUsuarios.size() == listaUsuariosDeserializada.size()) {
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                if (listaUsuarios.get(i) != listaUsuariosDeserializada.get(i)) {
+                    contador++;
+                    listasIguales = false;
+                }
+            }
+        }
+//        for (Usuario user : listaUsuarios) {
+//            for (Usuario user2 : listaUsuariosDeserializada) {
+//                boolean listasIguales;
+//                if (user == user2) {
+//                    listasIguales = true;
+//                } else {
+//                    listaIguales = false;
+//                    contador++;
+//                }
+//            }
+//
+//        }
+        return listasIguales;
     }
 
     /**
