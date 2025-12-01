@@ -128,13 +128,15 @@ public class Main {
                     System.out.println("Introduzca el dirección del usuario");
                     address = teclado.nextLine();
                     System.out.println("Introduzca el año de nacimiento del usuario");
-                    yearbirth = Integer.parseInt(teclado.nextLine());
-
-                    // Instanciación del objeto user de la clase Usuario
-                    user = new Usuario(id, password, address, yearbirth);
-                    // Se agrega el usuario a la lista temporal de usuarios
-                    Usuario.agregarUsuario(user);
-                    System.out.println(String.format("El usuario con identificador '%s' ha sido agregado con éxito", user.getID()));
+                    try {
+                        yearbirth = Integer.parseInt(teclado.nextLine());
+                        // Instanciación del objeto user de la clase Usuario
+                        user = new Usuario(id, password, address, yearbirth);
+                        // Se agrega el usuario a la lista temporal de usuarios
+                        Usuario.agregarUsuario(user);
+                    } catch (NumberFormatException ex) {
+                        System.err.println("Se ha introducido un formato numérico incorrecto. Se debe introducir como año de nacimiento un número entero. Mensaje: " + ex.getMessage());
+                    }
                     break;
 
                 // Borrar un usuario a la lista de usuarios
@@ -146,8 +148,6 @@ public class Main {
                     id = teclado.nextLine();
                     // Se llama al método estático de la clase Usuario para eliminar el usuario solicitado
                     Usuario.borrarUsuario(id);
-                    System.out.println(String.format("El usuario con identificador '%s' ha sido borrado con éxito", id));
-
                     break;
 
                 // Guardar la lista de usuarios en un archivo (serialización)
