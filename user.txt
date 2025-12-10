@@ -20,3 +20,5 @@ Usuario [Identificador= 234, Contraseña= qwer, Dirección= asdf, Año de nacimi
 Usuario [Identificador= 22334wwtrw, Contraseña= wtwert2345, Dirección= gt243t3gfrwe, Año de nacimiento= 545454]
 Usuario [Identificador= asdfaiofhipoa, Contraseña= hwgpohgwi, Dirección= piohgahpgiao, Año de nacimiento= 4411]
 Usuario [Identificador= 7f7f7f, Contraseña= , Dirección= , Año de nacimiento= 3]
+Usuario [Identificador= , Contraseña= , Dirección= , Año de nacimiento= 5588]
+Usuario [Identificador= 44, Contraseña= 33, Dirección= 55, Año de nacimiento= 66]
