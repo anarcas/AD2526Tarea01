@@ -151,29 +151,37 @@ public class Usuario implements Serializable {
         Scanner teclado = new Scanner(System.in);
         String respuesta;
 
-        do {
-            if (Usuario.listaUsuariosTemp.get(contador).getID().equals(user.getID())) {
-                usuarioExiste = true;
-                System.out.println(String.format("El usuario con identificador %s ya se encuentra en la lista de usuarios, ¿desea sustituir su contenido? (S|N)", user.getID()));
-                respuesta = teclado.nextLine();
-                if (respuesta.equals("S")) {
-                    Usuario.listaUsuariosTemp.get(contador).contrasena = user.getPassword();
-                    Usuario.listaUsuariosTemp.get(contador).direccion = user.getAddress();
-                    Usuario.listaUsuariosTemp.get(contador).anoNacimiento = user.getYearBirth();
-                    System.out.println(String.format("El usuario existente con identificador '%s' ha actualizado sus atributos con éxito", Usuario.listaUsuariosTemp.get(contador).getID()));
-                } else {
-                    System.out.println(String.format("El usuario existente con identificador '%s' no se han actualizado sus atributos", Usuario.listaUsuariosTemp.get(contador).getID()));
-                }
-            } else {
-                usuarioExiste = false;
-            }
-            contador++;
-        } while (!usuarioExiste && (contador < Usuario.listaUsuariosTemp.size()));
+        if (!Usuario.listaUsuariosTemp.isEmpty()) {
 
-        if (!usuarioExiste) {
+            do {
+                if (Usuario.listaUsuariosTemp.get(contador).getID().equals(user.getID())) {
+                    usuarioExiste = true;
+                    System.out.println(String.format("El usuario con identificador %s ya se encuentra en la lista de usuarios, ¿desea sustituir su contenido? (S|N)", user.getID()));
+                    respuesta = teclado.nextLine();
+                    if (respuesta.equals("S")) {
+                        Usuario.listaUsuariosTemp.get(contador).contrasena = user.getPassword();
+                        Usuario.listaUsuariosTemp.get(contador).direccion = user.getAddress();
+                        Usuario.listaUsuariosTemp.get(contador).anoNacimiento = user.getYearBirth();
+                        System.out.println(String.format("El usuario existente con identificador '%s' ha actualizado sus atributos con éxito", Usuario.listaUsuariosTemp.get(contador).getID()));
+                    } else {
+                        System.out.println(String.format("El usuario existente con identificador '%s' no se han actualizado sus atributos", Usuario.listaUsuariosTemp.get(contador).getID()));
+                    }
+                } else {
+                    usuarioExiste = false;
+                }
+                contador++;
+            } while (!usuarioExiste && (contador < Usuario.listaUsuariosTemp.size()));
+
+            if (!usuarioExiste) {
+                Usuario.listaUsuariosTemp.add(user);
+                System.out.println(String.format("El usuario con identificador '%s' ha sido agregado con éxito", user.getID()));
+            }
+            
+        } else {
             Usuario.listaUsuariosTemp.add(user);
             System.out.println(String.format("El usuario con identificador '%s' ha sido agregado con éxito", user.getID()));
         }
+
     }
 
     /**
