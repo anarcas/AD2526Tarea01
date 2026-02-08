@@ -279,7 +279,7 @@ public class Usuario implements Serializable {
 
             // Manejo de excepciones
         } catch (FileNotFoundException ex) {
-            System.err.println("Error: El archivo '" + nombreArchivo + "' no existe.");
+            System.err.println("Error: El archivo '" + nombreArchivo + "' no existe."+ex.getMessage());
         } catch (IOException ex) {
             System.err.println("Error de Entrada/Salida: Falló la lectura del fichero.");
         } catch (ClassNotFoundException | ClassCastException ex) {
